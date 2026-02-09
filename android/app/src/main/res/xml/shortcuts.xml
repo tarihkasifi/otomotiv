@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shortcuts xmlns:android="http://schemas.android.com/apk/res/android">
+    <shortcut
+        android:shortcutId="report_bug"
+        android:enabled="true"
+        android:icon="@drawable/ic_shortcut_bug"
+        android:shortcutShortLabel="@string/shortcut_report_bug"
+        android:shortcutLongLabel="@string/shortcut_report_bug_long">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetPackage="com.example.otomotiv_ariza_tespit"
+            android:targetClass="com.example.otomotiv_ariza_tespit.MainActivity"
+            android:data="app://shortcut/report_bug" />
+    </shortcut>
+    <shortcut
+        android:shortcutId="share_app"
+        android:enabled="true"
+        android:icon="@drawable/ic_shortcut_share"
+        android:shortcutShortLabel="@string/shortcut_share"
+        android:shortcutLongLabel="@string/shortcut_share_long">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetPackage="com.example.otomotiv_ariza_tespit"
+            android:targetClass="com.example.otomotiv_ariza_tespit.MainActivity"
+            android:data="app://shortcut/share_app" />
+    </shortcut>
+    <shortcut
+        android:shortcutId="pair_device"
+        android:enabled="true"
+        android:icon="@drawable/ic_shortcut_bluetooth"
+        android:shortcutShortLabel="@string/shortcut_pair_device"
+        android:shortcutLongLabel="@string/shortcut_pair_device_long">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetPackage="com.example.otomotiv_ariza_tespit"
+            android:targetClass="com.example.otomotiv_ariza_tespit.MainActivity"
+            android:data="app://shortcut/pair_device" />
+    </shortcut>
+    <shortcut
+        android:shortcutId="get_support"
+        android:enabled="true"
+        android:icon="@drawable/ic_shortcut_support"
+        android:shortcutShortLabel="@string/shortcut_support"
+        android:shortcutLongLabel="@string/shortcut_support_long">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetPackage="com.example.otomotiv_ariza_tespit"
+            android:targetClass="com.example.otomotiv_ariza_tespit.MainActivity"
+            android:data="app://shortcut/get_support" />
+    </shortcut>
+    <shortcut
+        android:shortcutId="about"
+        android:enabled="true"
+        android:icon="@drawable/ic_shortcut_info"
+        android:shortcutShortLabel="@string/shortcut_about"
+        android:shortcutLongLabel="@string/shortcut_about_long">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetPackage="com.example.otomotiv_ariza_tespit"
+            android:targetClass="com.example.otomotiv_ariza_tespit.MainActivity"
+            android:data="app://shortcut/about" />
+    </shortcut>
+</shortcuts>

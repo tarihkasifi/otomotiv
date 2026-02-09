@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="shortcut_report_bug">Hata Bildir</string>
+    <string name="shortcut_report_bug_long">Hata veya sorun bildir</string>
+    <string name="shortcut_share">Paylaş</string>
+    <string name="shortcut_share_long">Uygulamayı arkadaşınla paylaş</string>
+    <string name="shortcut_pair_device">Cihaz Etkinleştir</string>
+    <string name="shortcut_pair_device_long">OBD cihazını etkinleştir</string>
+    <string name="shortcut_support">Destek Al</string>
+    <string name="shortcut_support_long">Destek ve yardım al</string>
+    <string name="shortcut_about">Hakkımızda</string>
+    <string name="shortcut_about_long">Uygulama hakkında bilgi</string>
+</resources>
