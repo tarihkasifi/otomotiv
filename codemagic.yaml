@@ -1,24 +1,57 @@
 workflows:
-  ios-build:
-    name: iOS IPA Build
+  ios-release:
+    name: iOS App Store Release
     max_build_duration: 60
-    instance_type: mac_mini_m1
+    instance_type: mac_mini_m2
+    
+    integrations:
+      app_store_connect: Codemagic
+    
     environment:
+      ios_signing:
+        distribution_type: app_store
+        bundle_identifier: com.huseyinasir.otomotiv
       flutter: stable
       xcode: latest
       cocoapods: default
+      
     scripts:
+      - name: Set up code signing settings on Xcode project
+        script: |
+          xcode-project use-profiles --project ios/Runner.xcodeproj
+          
+      - name: Clean previous build
+        script: |
+          flutter clean
+          rm -rf ios/Pods ios/Podfile.lock ios/.symlinks
+          rm -rf ~/Library/Developer/Xcode/DerivedData
+          
       - name: Get Flutter packages
         script: |
           flutter pub get
-      - name: Install pods
+          
+      - name: Install CocoaPods dependencies
         script: |
-          find . -name "Podfile" -exec dir {} \;
-          cd ios && pod install
-      - name: Build iOS
+          cd ios && pod cache clean --all && pod install --repo-update
+          
+      - name: Flutter build ipa
         script: |
-          flutter build ipa --release --no-codesign
+          flutter build ipa --release \
+            --build-number=$PROJECT_BUILD_NUMBER \
+            --export-options-plist=$HOME/export_options.plist
+            
     artifacts:
       - build/ios/ipa/*.ipa
       - /tmp/xcodebuild_logs/*.log
       - flutter_drive.log
+      
+    publishing:
+      email:
+        recipients:
+          - asirhuseyin@hotmail.com
+        notify:
+          success: true
+          failure: true
+      app_store_connect:
+        auth: integration
+        submit_to_testflight: true
