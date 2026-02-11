@@ -1,4 +1,4 @@
-package com.example.otomotiv_ariza_tespit
+package com.huseyinasir.otomotiv
 
 import android.content.Intent
 import android.os.Bundle

@@ -184,7 +184,7 @@ class _DataGridScreenState extends State<DataGridScreen> {
           // Bağlantı bekleme ekranı
           if (!_isConnected)
             Container(
-              color: const Color(0xFF0A0A15).withOpacity(0.85),
+              color: const Color(0xFF0A0A15).withOpacity(0.4),
               child: Center(
                 child: Column(
                   mainAxisSize: MainAxisSize.min,

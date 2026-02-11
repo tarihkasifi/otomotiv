@@ -178,7 +178,7 @@ class _GaugeScreenState extends State<GaugeScreen>
             // Bağlantı bekleme ekranı (en önde)
             if (!_isConnected)
               Container(
-                color: const Color(0xFF0D0D12).withOpacity(0.95),
+                color: const Color(0xFF0D0D12).withOpacity(0.4),
                 child: Center(
                   child: Column(
                     mainAxisSize: MainAxisSize.min,

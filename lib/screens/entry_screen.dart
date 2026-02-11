@@ -471,20 +471,10 @@ class _EntryScreenState extends State<EntryScreen>
   Widget _buildTitle() {
     return Column(
       children: [
-        ShaderMask(
           shaderCallback: (bounds) => const LinearGradient(
             colors: [Color(0xFFFFFFFF), Color(0xFFE0E0E0)],
           ).createShader(bounds),
-          child: Text(
-            'Eray Auto',
-            style: TextStyle(
-              fontSize: Responsive.fontSize(36),
-              fontWeight: FontWeight.w800,
-              color: Colors.white,
-              letterSpacing: 4,
-            ),
-          ),
-        ),
+          child: SizedBox.shrink(), // Eray Auto text removed
         const SizedBox(height: 8),
         Container(
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),

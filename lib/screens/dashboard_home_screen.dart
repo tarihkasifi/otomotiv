@@ -110,8 +110,73 @@ class _DashboardHomeScreenState extends State<DashboardHomeScreen>
     if (!hasSeenGuide && mounted) {
       await prefs.setBool('has_seen_obd_guide', true);
       _showOBDSetupGuide();
+    } else {
+      // Rehber zaten görüldüyse güncelleme kontrolü yap
+      _checkForUpdates();
     }
   }
+
+  void _checkForUpdates() {
+    // Simüle edilmiş güncelleme kontrolü
+    // Gerçek senaryoda burada Firebase Remote Config veya API çağrısı yapılır
+    Future.delayed(const Duration(seconds: 2), () {
+      if (mounted) {
+        // Örnek güncelleme duyurusu (Test için aktif)
+        _showUpdateDialog(
+          'Güncelleme Yayında! v1.0.2',
+          '• Anasayfa tasarımı yenilendi\n• Veri ekranı görünürlüğü artırıldı\n• Performans iyileştirmeleri yapıldı',
+        );
+      }
+    });
+  }
+
+  void _showUpdateDialog(String title, String message) {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        backgroundColor: const Color(0xFF1A1A2E),
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20),
+            side: BorderSide(color: Colors.cyan.withOpacity(0.5), width: 2)),
+        title: Row(
+          children: [
+            const Icon(Icons.new_releases, color: Colors.cyan),
+            const SizedBox(width: 10),
+            Expanded(
+              child: Text(title,
+                  style: const TextStyle(
+                      color: Colors.white, fontWeight: FontWeight.bold)),
+            ),
+          ],
+        ),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              padding: const EdgeInsets.all(12),
+              decoration: BoxDecoration(
+                color: Colors.cyan.withOpacity(0.1),
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: Text(
+                message,
+                style: const TextStyle(color: Colors.white, height: 1.5),
+              ),
+            ),
+          ],
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: const Text('HARİKA',
+                style: TextStyle(color: Colors.cyan, fontWeight: FontWeight.bold)),
+          ),
+        ],
+      ),
+    );
+  }
+
 
   void _showOBDSetupGuide() {
     showDialog(
