@@ -16,41 +16,13 @@ workflows:
       cocoapods: default
       
     scripts:
-      - name: Fetch signing files (Verbose)
+      - name: Generate CSR and Private Key
         script: |
-          app-store-connect fetch-signing-files "com.huseyinasir.otomotiv" \
-            --type IOS_APP_STORE \
-            --create \
-            --verbose
-          keychain initialize
-          app-store-connect certificates list --type IOS_DISTRIBUTION --save
-          keychain add-certificates
-          xcode-project use-profiles --project ios/Runner.xcodeproj
+          openssl req -nodes -newkey rsa:2048 -keyout ios_distribution.key -out certificate.csr -subj "/emailAddress=asirhuseyin@hotmail.com/CN=Huseyin Asir/C=TR"
           
-      - name: Clean previous build
-        script: |
-          flutter clean
-          rm -rf ios/Pods ios/Podfile.lock ios/.symlinks
-          rm -rf ~/Library/Developer/Xcode/DerivedData
-          
-      - name: Get Flutter packages
-        script: |
-          flutter pub get
-          
-      - name: Install CocoaPods dependencies
-        script: |
-          cd ios && pod cache clean --all && pod install --repo-update
-          
-      - name: Flutter build ipa
-        script: |
-          flutter build ipa --release \
-            --build-number=$PROJECT_BUILD_NUMBER \
-            --export-options-plist=$HOME/export_options.plist
-            
     artifacts:
-      - build/ios/ipa/*.ipa
-      - /tmp/xcodebuild_logs/*.log
-      - flutter_drive.log
+      - certificate.csr
+      - ios_distribution.key
       
     publishing:
       email:
